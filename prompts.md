@@ -22,14 +22,40 @@ Borra el ejemplo de abajo cuando escribas el primero.
 
 ## Prompt 1
 
-**Modelo:** Opus 1M xHigh
+**Modelo:** Opus 5.5
 **Herramienta:** Claude Code
 
 ```
-Este es el ejemplo. Bórralo.
-
-El prompt va aquí dentro, entero y con sus saltos de línea,
-para que se sepa dónde empieza y dónde acaba.
+Lee los 3 scenarios del requisito "Lo que cada tarea muestra de su responsable" que se encuentra en la spec viva "openspec/specs/tasks/spec.md" y y también lee los tests existentes en este proyecto.
+Después, genera una tabla (matriz) de trazabilidad en formato markdown donde por cada scenario de este requisito se indique si hay un test que lo cubre. 
+En el caso en que un scenario sea cubierto por un test, se debe indicar el nombre exacto del test con que aparece en la suite de pruebas (código).
+En el caso en que tengas así sea una mínima duda de si el scenario está o no cubierto, se debe indicar "No lo se" en vez de cubierto o no y adicionalmente se debe indicar qúe hizo falta para decidirse por una opción.
+Las columnas de la tabla entonces deben ser: | Scenario | Test que lo cubre | Estado | Que faltó para decidir el estado |
+Donde Estado puede tener los sgtes posibles valores: Cubierto, No cubierto, No lo sé.
+Esta matriz de trazabilidad dejamela en el archivo vacío que ya existe para esto: docs/verificacion/lgg.md
 ```
 
-**Qué salió:** (opcional, una línea) funcionó a la primera / tuve que insistir / me inventó una ruta que no existe.
+**Qué salió:** Ninguno de los 3 scenarios tiene un test que lo cubra, y no hubo ninguno dudoso. Ya que de hecho en el proyecto NO hay ningún test implementado para la capability de Tasks.
+
+---
+
+## Prompt 2
+
+**Modelo:** Opus 5.5
+**Herramienta:** Claude Code
+
+```
+Al revisar los scenarios del requisto "Lo que cada tarea muestra de su responsable" identificas que alguno de estos le falta alguna regla o algo en especifico que impida crear un test 100% confiable y atado a este scenario.?
+```
+
+**Qué salió:** Se encontraron varias deficiencias (inconsistencias) en los scenarios.
+---
+
+## Prompt 3
+
+**Modelo:** Opus 5.5
+**Herramienta:** Claude Code
+
+```
+Revisemos una a una las cosas que faltan por aclarar (definir) en estos scenarios para que despues me ayudes a crear los tests de estos para q si sean confiables
+```
